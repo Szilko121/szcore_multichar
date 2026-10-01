@@ -1,55 +1,71 @@
-# 📦 szcore_multichar
+# szcore_multichar
 
-[![SzCore Resource](https://img.shields.io/badge/SzCore-FiveM%20Resource-00f0ff?style=for-the-badge&logo=fivem&logoColor=white)](https://github.com/Szilko121/SzCore-Framework)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](https://opensource.org/licenses/MIT)
+**SzCore Framework 1.4.0-rc1** · by **SzCode**
 
-> Moziszerű többkarakter választó felület valós idejű ped előnézettel, slotszám korlátozással.  
-> *Cinematic multi-character selection screen with character preview, slot limits, and deletion safeguards.*
+Multi-character selection and character creation frontend backed by SzCore character lifecycle.
 
----
+## Installation
 
-## ✨ Főbb Jellemzők (Features)
-- 🚀 **Alacsony erőforráshasználat (0.00ms idle)**
-- 🔒 **Szerveroldali hitelesítés és biztonsági ellenőrzések**
-- 🌐 **Többnyelvűség (i18n): Magyar (HU) & Angol (EN)**
-- 🧩 **Szerves integráció az SzCore ökoszisztémával**
-- 🔄 **Nyílt exportok és események (Events & Callbacks)**
-
----
-
-## 📋 Követelmények (Requirements)
-- FiveM Server Artifacts (minimum `v5848` vagy frissebb)
-- [`szcore`](https://github.com/Szilko121/szcore)
-- `oxmysql`
-- `ox_lib` (ajánlott)
-
----
-
-## 📥 Telepítés (Installation)
-
-1. Töltsd le vagy klónozd a repository-t a szervered `resources` mappájába:
-   ```bash
-   git clone https://github.com/Szilko121/szcore_multichar.git
-   ```
-2. Add hozzá a `server.cfg` konfigurációs fájlodhoz:
-   ```cfg
-   ensure szcore_multichar
-   ```
-3. Szükség esetén szabd testre a `config.lua` fájlban található beállításokat.
-
----
-
-## 💻 Exportok & Használat (Exports)
-
-```lua
--- Kliensoldali lekérdezés példa:
-local isReady = exports['szcore_multichar']:isReady()
-
--- Szerveroldali esemény példa:
-TriggerEvent('szcore_multichar:server:notify', source, 'Sikeres művelet!')
+```bash
+git clone https://github.com/Szilko121/szcore_multichar.git resources/[szcore]/szcore_multichar
 ```
 
----
+Then start the resource after its dependencies:
 
-## 📜 Licenc
-Kiadva a **MIT** licenc alatt. Részletekért lásd a `LICENSE` fájlt.
+```cfg
+ensure szcore_multichar
+```
+
+**Declared dependencies:** `szcore`
+
+For a complete server installation, use [`SzCore-Recipe`](https://github.com/Szilko121/SzCore-Recipe).
+
+## What this resource provides
+
+Multi-character selection and character creation frontend backed by SzCore character lifecycle.
+
+The resource is designed to use SzCore's server-authoritative APIs and modular startup model. Do not rename the resource directory: other resources may reference it by its canonical name.
+
+## Public exports detected
+
+- No named export detected by the documentation scanner.
+
+See [`docs/API.md`](docs/API.md) for the generated reference and the central [`SzCore-Framework`](https://github.com/Szilko121/SzCore-Framework) documentation for framework-wide API contracts.
+
+## Network events detected
+
+- No network event detected by the documentation scanner.
+
+Network events are implementation surfaces, not automatically trusted public APIs. Server handlers validate state/permissions where applicable. Prefer documented exports for third-party integrations.
+
+## Commands
+
+- No direct `RegisterCommand` entry detected.
+
+## Key mappings
+
+- No direct key mapping detected.
+
+## Database
+
+- This resource does not directly reference an SzCore SQL table, or uses core storage APIs instead.
+
+Fresh-install schema and migrations are owned by the `szcore` core resource unless this repository contains its own SQL file.
+
+## Configuration
+
+Read [`docs/CONFIGURATION.md`](docs/CONFIGURATION.md). Configuration is intentionally resource-local so optional modules can be restarted and maintained independently.
+
+## Development
+
+- Keep server-authoritative mutations on the server.
+- Validate source, distance, permission and entity ownership for sensitive network actions.
+- Prefer SzCore callbacks/exports over polling.
+- Avoid permanent tight loops unless a FiveM native explicitly requires per-frame application.
+- Keep backwards compatibility changes explicit and documented.
+
+## Version
+
+Current release candidate: **1.4.0-rc1**.
+
+This is an RC build. Validate it on a staging FXServer/OneSync/MariaDB environment before production rollout.

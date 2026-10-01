@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>SzCore Characters</title>
+</head>
+<body>
+    <main id="app" class="hidden">
+        <section class="panel">
+            <header>
+                <div>
+                    <span class="eyebrow">SZCORE FRAMEWORK</span>
+                    <h1>Karakterválasztó</h1>
+                    <p>Válassz karaktert, vagy hozz létre egy újat.</p>
+                </div>
+                <button id="refresh" class="ghost">Frissítés</button>
+            </header>
+
+            <div id="characters" class="characters"></div>
+
+            <form id="createForm" class="create-form hidden">
+                <div class="form-head">
+                    <div>
+                        <span class="eyebrow">ÚJ KARAKTER</span>
+                        <h2>Karakter létrehozása</h2>
+                    </div>
+                    <button type="button" id="cancelCreate" class="ghost">Mégse</button>
+                </div>
+                <input id="slot" type="hidden" />
+                <div class="grid">
+                    <label>Keresztnév<input id="firstname" required maxlength="32" /></label>
+                    <label>Vezetéknév<input id="lastname" required maxlength="32" /></label>
+                    <label>Születési dátum<input id="birthdate" type="date" required /></label>
+                    <label>Nem
+                        <select id="gender"><option value="male">Férfi</option><option value="female">Nő</option></select>
+                    </label>
+                    <label>Nemzetiség<input id="nationality" value="HU" maxlength="16" /></label>
+                </div>
+                <button class="primary" type="submit">Karakter létrehozása</button>
+            </form>
+            <div id="toast" class="toast hidden"></div>
+        </section>
+    </main>
+    <script src="app.js"></script>
+</body>
+</html>

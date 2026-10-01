@@ -1,0 +1,2 @@
+-- Intentionally small: character persistence and validation live in szcore.
+-- Keeping this resource UI-focused avoids duplicate player state and database logic.
