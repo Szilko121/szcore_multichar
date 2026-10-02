@@ -4,6 +4,7 @@ const createForm = document.getElementById('createForm');
 const toast = document.getElementById('toast');
 let maxCharacters = 4;
 let characters = [];
+let loading = false;
 
 const post = async (name, body = {}) => {
   const response = await fetch(`https://${GetParentResourceName()}/${name}`, {
@@ -11,6 +12,17 @@ const post = async (name, body = {}) => {
   });
   return response.json();
 };
+
+function setLoading(value, message) {
+  loading = value === true;
+  document.querySelectorAll('button, input, select').forEach(el => {
+    if (el.id !== 'refresh') el.disabled = loading;
+  });
+
+  if (loading && message) {
+    notify(message);
+  }
+}
 
 function notify(message) {
   toast.textContent = message;
@@ -75,6 +87,9 @@ window.addEventListener('message', (event) => {
   const data = event.data || {};
   if (data.action === 'open') app.classList.remove('hidden');
   if (data.action === 'close') app.classList.add('hidden');
+  if (data.action === 'loading') {
+    setLoading(data.loading, data.message);
+  }
   if (data.action === 'characters') {
     characters = Array.isArray(data.characters) ? data.characters : [];
     maxCharacters = Number(data.maxCharacters) || 4;
